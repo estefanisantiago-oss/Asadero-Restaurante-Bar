@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pedidos</title>
+<link rel="stylesheet" href="../CSS/stylecocina.css">
+</head>
+<body>
+
+<!-- PROTECCIÓN DE ACCESO -->
+<script>
+
+let sesionTexto = localStorage.getItem("sesion");
+
+if(!sesionTexto){
+   alert("Debes iniciar sesión");
+   window.location.href = "login.html";
+}
+
+let sesion = JSON.parse(sesionTexto);
+
+if(
+   !sesion ||
+   !sesion.rol ||
+   sesion.rol.trim().toLowerCase() !== "cocina"
+){
+   alert("Acceso denegado");
+
+   localStorage.removeItem("sesion");
+
+   window.location.href = "login.html";
+}
+
+</script>
+
+</script>
+
+<div class="container">
+
+    <h1 class="titulo">Pedidos</h1>
+
+    <div class="grid">
+
+        <!-- Mesa 1 -->
+        <div class="mesa">
+            <h2>Mesa 1</h2>
+            <div class="caja"></div>
+            <button class="btn-listos">Platillos Listos</button>
+        </div>
+
+        <!-- Mesa 2 -->
+        <div class="mesa">
+            <h2>Mesa 2</h2>
+            <div class="caja"></div>
+            <button class="btn-listos">Platillos Listos</button>
+        </div>
+
+        <!-- Mesa 3 -->
+        <div class="mesa">
+            <h2>Mesa 3</h2>
+            <div class="caja"></div>
+            <button class="btn-listos">Platillos Listos</button>
+        </div>
+
+        <!-- Mesa 4 -->
+        <div class="mesa">
+            <h2>Mesa 4</h2>
+            <div class="caja"></div>
+            <button class="btn-listos">Platillos Listos</button>
+        </div>
+
+    </div>
+
+    <button class="atras" onclick="cerrarSesion()">Cerrar sesión</button>
+
+</div>
+
+<script>
+
+// 🔓 CERRAR SESIÓN
+function cerrarSesion(){
+
+  localStorage.removeItem("sesion");
+
+  window.location.href = "index.html";
+}
+
+function cargarPedidos(){
+    let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+
+    document.querySelectorAll(".caja").forEach(c => c.innerHTML = "");
+
+    pedidos.forEach((p)=>{
+
+        if(p.estado !== "En preparación") return;
+
+        let caja = document.querySelectorAll(".caja")[p.mesa - 1];
+
+        if(caja){
+            let productosHTML = "";
+
+            p.productos.forEach(prod=>{
+                productosHTML += `<div>${prod.producto}</div>`;
+            });
+
+            caja.innerHTML += `
+                <div class="pedido">
+                    ${productosHTML}
+                    <div class="tipo">${p.tipo}</div>
+                </div>
+            `;
+        }
+    });
+}
+
+function marcarListoPorMesa(mesa){
+    let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+
+    pedidos.forEach(p=>{
+        if(p.mesa === mesa && p.estado === "En preparación"){
+            p.estado = "Listo";
+        }
+    });
+
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+}
+
+// botones
+document.querySelectorAll(".btn-listos").forEach((btn, mesaIndex)=>{
+    btn.addEventListener("click", ()=>{
+        let mesa = mesaIndex + 1;
+
+        marcarListoPorMesa(mesa);
+        alert("Mesa " + mesa + " lista ✅");
+        cargarPedidos();
+    });
+});
+
+window.addEventListener("storage", function(event){
+    if(event.key === "pedidos"){
+        cargarPedidos();
+    }
+});
+
+cargarPedidos();
+
+</script>
+
+</body>
+</html>

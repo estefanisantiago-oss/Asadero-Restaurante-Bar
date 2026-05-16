@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Opciones Administrador</title>
+<link rel="stylesheet" href="../CSS/styleAdmin.css">
+</head>
+
+<body>
+
+<!-- PROTECCIÓN DE ACCESO CORRECTA -->
+<script>
+
+let sesionTexto = localStorage.getItem("sesion");
+
+if(!sesionTexto){
+   alert("Debes iniciar sesión");
+   window.location.href = "login.html";
+}
+
+let sesion = JSON.parse(sesionTexto);
+
+if(
+   !sesion ||
+   !sesion.rol ||
+   sesion.rol.trim().toLowerCase() !== "admin"
+){
+   alert("Acceso denegado");
+
+   localStorage.removeItem("sesion");
+
+   window.location.href = "login.html";
+}
+
+</script>
+
+<div class="fondo">
+
+  <div class="card">
+    <p class="rol">DUEÑO</p>
+    <h2>OPCIONES DE ADMINISTRADOR</h2>
+
+    <div class="opcion" onclick="ir('financiero.html')">
+      <div>
+        <p class="titulo">Control Financiero</p>
+        <p class="desc">Registro de ingresos y egresos</p>
+      </div>
+      <span>↗</span>
+    </div>
+
+    <div class="opcion" onclick="ir('empleados.html')">
+      <div>
+        <p class="titulo">Empleados</p>
+        <p class="desc">Registro de empleados</p>
+      </div>
+      <span>↗</span>
+    </div>
+
+    <div class="opcion" onclick="ir('reservaciones.html')">
+      <div>
+        <p class="titulo">Reservaciones</p>
+        <p class="desc">Reservaciones de eventos privados</p>
+      </div>
+      <span>↗</span>
+    </div>
+
+  </div>
+
+  <button class="cerrar" onclick="cerrarSesion()">CERRAR</button>
+
+</div>
+
+<script src="../js/scriptAdmin.js"></script>
+
+<!--  CERRAR SESIÓN -->
+<script>
+function cerrarSesion(){
+  localStorage.removeItem("sesion");
+  window.location.href = "Index.html";
+}
+</script>
+
+</body>
+</html>

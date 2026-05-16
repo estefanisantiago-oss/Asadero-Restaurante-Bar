@@ -1,0 +1,99 @@
+*{
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#363636,#0e0e0f,#5e6063);
+}
+
+/* CONTENEDOR */
+.pantalla{
+  text-align:center;
+  color:rgb(254, 254, 254);
+  animation: aparecer 0.6s ease;
+}
+
+/* TITULO */
+.logo-title{
+  font-size:40px;
+  text-shadow:0 0 15px #00aaff;
+}
+
+.sub{
+  color:#ccc;
+  margin-bottom:20px;
+}
+
+/* INPUTS */
+input{
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  width:250px;
+  border-radius:20px;
+  border:none;
+  text-align:center;
+}
+
+/* BOTON */
+.btn-principal{
+  background:#090909;
+  color:rgb(0, 255, 30);
+  padding:12px 30px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin-top:15px;
+  transition:0.3s;
+}
+
+.btn-principal:hover{
+  background:#676665;
+  transform:scale(1.05);
+}
+
+/* AREA */
+.btn-area{
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  width:200px;
+  border:none;
+  border-radius:25px;
+  background:#010608;
+  color:rgb(3, 254, 33);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn-area:hover{
+  background:#5f5e5c;
+  transform:scale(1.05);
+}
+
+/* LOADER */
+.loader{
+  border:6px solid #fff;
+  border-top:6px solid #ff7b00;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  margin:20px auto;
+  animation:giro 1s linear infinite;
+}
+
+@keyframes giro{
+  0%{transform:rotate(0);}
+  100%{transform:rotate(360deg);}
+}
+
+@keyframes aparecer{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Registro de empleados</title>
+<link rel="stylesheet" href="../CSS/empleados.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Registro de empleados</h1>
+
+  <!-- FORMULARIO -->
+  <div class="formulario">
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="number" id="edad" placeholder="Edad">
+    <input type="text" id="genero" placeholder="Género">
+    <input type="text" id="telefono" placeholder="Teléfono">
+    <input type="text" id="rol" placeholder="Rol">
+    <input type="text" id="horario" placeholder="Horario">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="agregarEmpleado()">Agregar</button>
+  </div>
+
+  <!-- TABLA -->
+  <div class="tabla">
+
+<div class="encabezado">
+  <span>Nombre</span>
+  <span>Edad</span>
+  <span>Género</span>
+  <span>Teléfono</span>
+  <span>Rol</span>
+  <span>Horario</span>
+  <span>Contraseña</span>
+  <span>Acción</span>
+</div>
+
+    <div id="lista"></div>
+
+  </div>
+
+  <button class="btn" onclick="volver()">Atrás</button>
+
+</div>
+
+<script src="../Js/empleados.js"></script>
+</body>
+</html>

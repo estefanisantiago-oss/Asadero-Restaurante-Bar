@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendario</title>
+  <link rel="stylesheet" href="../CSS/eventos.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <h1>CALENDARIO DE EVENTOS</h1>
+
+  <div class="tabla">
+    <div class="encabezado">
+      <span>Nombre</span>
+      <span>Evento</span>
+      <span>Personas</span>
+      <span>Fecha</span>
+      <span>Hora</span>
+      <span>Teléfono</span>
+      <span>Preferencias</span>
+      <span>Confirmación</span>
+      <span>Condiciones</span>
+      <span>Acción</span>
+    </div>
+
+    <div id="lista"></div>
+  </div>
+
+  <div class="center-button">
+    <button onclick="window.location.href='reservaciones.html'">REGRESAR</button>
+  </div>
+</div>
+
+<script>
+let eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+const lista = document.getElementById('lista');
+
+function mostrarEventos() {
+  lista.innerHTML = "";
+
+  eventos.forEach((ev, index) => {
+    const fila = document.createElement('div');
+    fila.classList.add('fila');
+
+    fila.innerHTML = `
+      <span>${ev.nombre}</span>
+      <span>${ev.tipo}</span>
+      <span>${ev.personas}</span>
+      <span>${ev.fecha}</span>
+      <span>${ev.hora}</span>
+      <span>${ev.telefono}</span>
+      <span>${ev.preferencias}</span>
+      <span>${ev.confirmacion}</span>
+      <span>${ev.condiciones}</span>
+      <span>
+        <button onclick="eliminarEvento(${index})">❌</button>
+      </span>
+    `;
+
+    lista.appendChild(fila);
+  });
+}
+
+function eliminarEvento(index) {
+  if (confirm("¿Eliminar este evento?")) {
+    eventos.splice(index, 1);
+    localStorage.setItem('eventos', JSON.stringify(eventos));
+    mostrarEventos();
+  }
+}
+
+mostrarEventos();
+</script>
+
+</body>
+</html>

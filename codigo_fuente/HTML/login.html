@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="../CSS/auth.css">
+</head>
+
+<body>
+
+<div class="pantalla">
+
+  <h1 class="logo-title">Iniciar sesión</h1>
+
+  <input type="text" id="nombre" placeholder="Nombre">
+  <input type="password" id="pass" placeholder="Contraseña">
+
+  <button class="btn-principal" onclick="login()">Entrar</button>
+
+</div>
+
+<script>
+
+
+function login(){
+
+    let nombre = document.getElementById("nombre").value.trim().toLowerCase();
+    let pass = document.getElementById("pass").value.trim();
+
+    let empleados = JSON.parse(localStorage.getItem("empleados")) || [];
+
+    let usuarioEncontrado = empleados.find(e =>
+
+        e.nombre.trim().toLowerCase() === nombre &&
+        e.password === pass
+
+    );
+
+    if(!usuarioEncontrado){
+        alert("Usuario o contraseña incorrectos");
+        return;
+    }
+
+    // LIMPIAR SESIONES ANTERIORES
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("rol");
+    localStorage.removeItem("sesion");
+
+    // CREAR NUEVA SESIÓN
+    let sesion = {
+        nombre: usuarioEncontrado.nombre,
+        rol: usuarioEncontrado.rol.trim().toLowerCase()
+    };
+
+    // GUARDAR
+    localStorage.setItem("sesion", JSON.stringify(sesion));
+
+    // VERIFICAR
+    let test = JSON.parse(localStorage.getItem("sesion"));
+
+    if(!test){
+        alert("Error al guardar sesión");
+        return;
+    }
+
+    // REDIRECCIÓN
+    switch(test.rol){
+
+        case "mesero":
+            window.location.href = "mesero.html";
+        break;
+
+        case "cocina":
+            window.location.href = "cocina.html";
+        break;
+
+        case "admin":
+            window.location.href = "Administrador.html";
+        break;
+
+        default:
+            alert("Rol inválido");
+    }
+}
+
+</script>
+
+</body>
+</html>

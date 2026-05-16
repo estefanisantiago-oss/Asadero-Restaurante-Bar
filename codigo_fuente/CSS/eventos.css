@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6e6e6;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.form { width: 350px; }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+input {
+  width: 180px;
+  border: 1px solid #999;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background: #ff0000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* TABLA */
+.tabla {
+  overflow-x: auto;
+}
+
+.encabezado, .fila {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.encabezado {
+  font-weight: bold;
+  background: #f5f2f2;
+}
+
+.fila {
+  background: #f7f5f5;
+  margin-top: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}

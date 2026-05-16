@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+/* FORMULARIO */
+.formulario {
+  margin: 20px 0;
+}
+
+.formulario input {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.formulario button {
+  padding: 10px 20px;
+  border: none;
+  background: rgb(9, 221, 9);
+  color: rgb(8, 8, 8);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* TABLA */
+.tabla {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+}
+
+.encabezado, .fila {
+  display: grid;
+  grid-template-columns: 1.2fr 0.5fr 0.8fr 1fr 0.8fr 1fr 1fr 0.5fr;
+  align-items: center;
+  gap: 5px;
+}
+
+.encabezado span, .fila span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.encabezado {
+  font-weight: bold;
+  background: #fafafa;
+}
+
+.fila {
+  margin: 8px 0; 
+  padding: 8px;
+  background: #fafafa;
+  border-radius: 6px;
+}
+
+.fila button {
+  margin: 2px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fila button:first-child {
+  background: rgb(0, 255, 26); /* editar */
+  color: white;
+}
+
+.fila button:last-child {
+  background: red; /* eliminar */
+  color: white;
+}
+
+/* BOTON ATRAS */
+.btn {
+  margin: 30px auto;
+  display: block;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 50px;
+  background: rgb(0, 0, 0);
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: rgb(249, 2, 2);
+}

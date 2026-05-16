@@ -1,0 +1,346 @@
+/* ===== BASE ===== */
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: url("../img/fondo.jpg") no-repeat center/cover;
+}
+
+/* ===== CONTENEDORES ===== */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 120px;
+}
+
+.title {
+  font-size: 38px;
+}
+
+/* TITULO PEDIDOS */
+.titulo {
+  display: inline-block;
+  background: black;
+  color: white;
+  padding: 15px 60px;
+  border-radius: 0 40px 40px 40px;
+  margin-bottom: 40px;
+}
+
+/* EFECTOS */
+.neon {
+  color: rgb(13, 255, 0);
+  -webkit-text-stroke: 2px #10510b;
+  text-shadow: 0 0 10px #060606;
+}
+
+.neon-soft {
+  color: white;
+  -webkit-text-stroke: 1px #f7faf7;
+}
+
+/* ===== BOTONES GENERALES ===== */
+button {
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* MENU */
+.btn-menu {
+  background: #090909;
+}
+.btn-menu:hover {
+  background: #0ae406;
+  transform: scale(1.05);
+}
+
+/* MESAS */
+.btn-mesa {
+  background: #000000;
+}
+.btn-mesa:hover {
+  background: #04f414;
+  transform: scale(1.05);
+}
+
+/* VOLVER */
+.btn-volver {
+  background: #f00000;
+}
+.btn-volver:hover {
+  background: #f50008;
+  transform: scale(1.05);
+}
+
+/* ===== PEDIR (NEGRO FORZADO) ===== */
+.btn-pedir {
+  background: #000000 !important;
+  color: #00ff04;
+  border: 1px solid #15ff00;
+  padding: 5px 15px;
+}
+
+.btn-pedir:hover {
+  background: #33ff00 !important;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* PAGADO */
+.btn-pagado {
+  background: #3e3e3e;
+}
+.btn-pagado:hover {
+  background: #0096c7;
+  transform: scale(1.05);
+}
+
+/* ===== MENU ===== */
+.menu {
+  display: none;
+  min-height: 100vh;
+  background: url("menu-fondo.jpg") no-repeat center/cover;
+  padding: 20px;
+}
+
+.mesa {
+  color: #f4f2f2;
+  text-align: center;
+  font-size: 42px;
+}
+
+/* ===== SECCIONES ===== */
+.seccion {
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  padding: 15px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.seccion h2 {
+  background: #00e01a;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+.seccion ul {
+  list-style: none;
+  padding: 0;
+}
+
+.seccion li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: dotted 2px #000;
+  padding: 8px 0;
+}
+
+.seccion span {
+  font-weight: bold;
+}
+
+/* BOTONES ACCIÓN */
+.btn-enviar { background: green; }
+.btn-ticket { background: #333; }
+
+/* ===== PEDIDO ===== */
+#listaPedido {
+  margin-top: 10px;
+}
+
+#listaPedido li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+/* BOTÓN ELIMINAR (CORREGIDO) */
+#listaPedido button {
+  background: red !important;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+/* SELECT */
+select {
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+/* TOTAL */
+#total {
+  font-size: 20px;
+  color: #000;
+}
+
+/* CENTRAR */
+.center {
+  text-align: center;
+}
+
+/* PANEL */
+.panel-estado {
+  background: #fff3cd;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ===== GRID PEDIDOS ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  justify-items: center;
+}
+
+/* ENCABEZADO MESA */
+.mesa h2 {
+  display: inline-block;
+  background: black;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 0 30px 30px 30px;
+  font-size: 22px;
+}
+
+/* CAJA PEDIDOS */
+.caja {
+  width: 200px;
+  height: 130px;
+  background: black;
+  border-radius: 25px;
+  margin: 15px 0;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  text-align: left;
+}
+
+/* BOTON ATRAS */
+.atras {
+  background: #e6e6e6;
+  color: black;
+  margin-top: 40px;
+  padding: 12px 40px;
+  border-radius: 25px;
+}
+
+/* ===== TICKET ===== */
+.ticket {
+  width: 350px;
+  background: black;
+  color: white;
+  border-radius: 40px;
+  padding: 20px;
+}
+
+/* BOTON IMPRIMIR */
+.btn-imprimir {
+  background: #06d6a0;
+  color: black;
+  font-weight: bold;
+}
+.btn-imprimir:hover {
+  background: #1b9aaa;
+  transform: scale(1.05);
+}
+
+/* BOTON VOLVER TICKET */
+.btn-volver-ticket {
+  background: #f80000;
+  color: white;
+}
+.btn-volver-ticket:hover {
+  background: #ff0000;
+  transform: scale(1.05);
+}
+
+.header {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.info {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.totales {
+  margin-top: 20px;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fecha {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .ticket, .ticket * {
+    visibility: visible;
+  }
+  .ticket {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  button {
+    display: none;
+  }
+}
+
