@@ -3,7 +3,7 @@ Sistema web para restaurante asadero
 
 Integrantes: 
 Gustavo Hernandez Tolentino/
-estefani Elvira Santiao Rodriguez 
+Estefani Elvira Santiao Rodriguez 
 
 
 Docente: 
