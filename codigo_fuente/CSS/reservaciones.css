@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #dcdcdc;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TITULO */
+h1 {
+  margin-bottom: 40px;
+  font-weight: normal;
+}
+
+/* BOTONES */
+.btn {
+  width: 250px;
+  padding: 15px;
+  margin: 15px 0;
+
+  border: none;
+  border-radius: 50px; /* ovalado */
+
+  background: rgb(0, 0, 0);
+  color: rgb(252, 247, 247);
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
+}
+
+/* BOTON MENU MAS PEQUEÑO */
+.menu {
+  width: 150px;
+  margin-top: 30px;
+}

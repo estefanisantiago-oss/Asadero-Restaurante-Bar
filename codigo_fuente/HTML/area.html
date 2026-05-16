@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Área</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/auth.css">
+
+</head>
+
+<body>
+
+<div class="pantalla">
+
+  <h1 class="logo-title">Selecciona tu área</h1>
+
+  <button class="btn-area" onclick="entrar('Mesero')">Mesero</button>
+  <button class="btn-area" onclick="entrar('Cocina')">Cocina</button>
+  <button class="btn-area" onclick="entrar('Administrador')">Administrador</button>
+
+</div>
+
+<script>
+function entrar(area){
+ localStorage.setItem("area", area);
+
+ if(area === "Mesero"){
+   window.location.href = "login.html";   // pedidos
+ } 
+ else if(area === "Cocina"){
+   window.location.href = "login.html"; // cocina
+ }
+ else if(area === "Administrador"){
+   window.location.href = "login.html"; // cocina
+ }
+}
+</script>
+
+</body>
+</html>

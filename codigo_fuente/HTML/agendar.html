@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservaciones para eventos</title>
+  <link rel="stylesheet" href="../CSS/agendar.css">
+</head>
+<body>
+
+<div class="wrapper">
+  <h1>Reservaciones para eventos</h1>
+
+  <form class="form">
+    <div class="row"><label>Nombre:</label><input type="text" id="nombre"></div>
+    <div class="row"><label>Fecha:</label><input type="date" id="fecha"></div>
+    <div class="row"><label>Hora:</label><input type="time" id="hora"></div>
+    <div class="row"><label>Número de personas:</label><input type="number" id="personas"></div>
+    <div class="row"><label>Teléfono:</label><input type="text" id="telefono"></div>
+    <div class="row"><label>Evento:</label><input type="text" id="evento"></div>
+    <div class="row"><label>Preferencias:</label><input type="text" id="preferencias"></div>
+    <div class="row"><label>Confirmación:</label><input type="text" id="confirmacion"></div>
+    <div class="row"><label>Condiciones:</label><input type="text" id="condiciones"></div>
+  </form>
+
+  <div class="buttons">
+    <button onclick="irAgregar()">AÑADIR</button>
+    <button onclick="irRegresar()">REGRESAR</button>
+  </div>
+</div>
+
+<script>
+function irAgregar() {
+
+  const nuevoEvento = {
+    nombre: document.getElementById('nombre').value,
+    fecha: document.getElementById('fecha').value,
+    hora: document.getElementById('hora').value,
+    personas: document.getElementById('personas').value,
+    telefono: document.getElementById('telefono').value,
+    tipo: document.getElementById('evento').value,
+    preferencias: document.getElementById('preferencias').value,
+    confirmacion: document.getElementById('confirmacion').value,
+    condiciones: document.getElementById('condiciones').value
+  };
+
+  // Validación básica
+  if (!nuevoEvento.nombre || !nuevoEvento.fecha || !nuevoEvento.personas) {
+    alert("Completa los campos obligatorios");
+    return;
+  }
+
+  let eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+
+  eventos.push(nuevoEvento);
+
+  localStorage.setItem('eventos', JSON.stringify(eventos));
+
+  window.location.href = "eventos.html";
+}
+
+function irRegresar() {
+  window.location.href = "reservaciones.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>ASADERO RESTAURANTE/BAR EL AGAVE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+
+<!--  PROTECCIÓN DE ACCESO -->
+<script>
+
+let sesionTexto = localStorage.getItem("sesion");
+
+if(!sesionTexto){
+   alert("Debes iniciar sesión");
+   window.location.href = "login.html";
+}
+
+let sesion = JSON.parse(sesionTexto);
+
+if(
+   !sesion ||
+   !sesion.rol ||
+   sesion.rol.toLowerCase() !== "mesero"
+){
+   alert("Acceso denegado");
+   localStorage.removeItem("sesion");
+   window.location.href = "login.html";
+}
+
+</script>
+
+<!-- INICIO -->
+<div class="container" id="inicio">
+  <img src="../img/logo.png" class="logo">
+  <h1 class="title neon">ASADERO RESTAURANTE/BAR EL AGAVE</h1>
+  <p class="neon-soft">Fuego & Sabor</p>
+  <button class="btn-menu" onclick="mostrarMesas()">Ver menú</button>
+  <button class="btn-menu" onclick="cerrarSesion()">Cerrar</button>
+</div>
+
+<!-- MESAS -->
+<div class="container" id="mesas" style="display:none;">
+  <h1 class="title neon">SELECCIONA MESA</h1>
+
+  <button class="btn-mesa" onclick="seleccionarMesa(1)">Mesa 1</button>
+  <button class="btn-mesa" onclick="seleccionarMesa(2)">Mesa 2</button>
+  <button class="btn-mesa" onclick="seleccionarMesa(3)">Mesa 3</button>
+  <button class="btn-mesa" onclick="seleccionarMesa(4)">Mesa 4</button>
+
+  <button class="btn-volver" onclick="volverInicio()">Volver</button>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu" style="display:none;">
+
+<h1 class="mesa" id="tituloMesa">MESA</h1>
+
+<!-- PEDIDO ACTUAL -->
+<div class="seccion">
+<h2>🧾 Pedido actual</h2>
+
+<label>Tipo:
+<select id="tipoPedido">
+<option>Comer aquí</option>
+<option>Para llevar</option>
+</select>
+</label>
+
+<br><br>
+
+<label>Pago:
+<select id="metodoPago">
+<option>Efectivo</option>
+<option>Tarjeta</option>
+<option>Transferencia</option>
+</select>
+</label>
+
+<ul id="listaPedido"></ul>
+
+<p><strong>Total: $<span id="total">0</span></strong></p>
+
+<label>💵 Efectivo:
+<input type="number" id="inputEfectivo" placeholder="Ej: 500" min="0">
+</label>
+
+<p id="estado">Estado: Pendiente</p>
+
+<div id="panelEstado" class="panel-estado">
+  <p>Estado en tiempo real:</p>
+  <p id="estadoDetalle">Esperando envío a cocina...</p>
+</div>
+
+<div class="center">
+<button class="btn-enviar" onclick="enviarCocina()">Enviar a cocina</button>
+<button class="btn-ticket" onclick="generarTicket()">Generar ticket</button>
+<button class="btn-pagado" onclick="marcarPagado()">Marcar como pagado</button>
+</div>
+</div>
+
+<!-- ENTRADAS -->
+<div class="seccion">
+<h2>ENTRADAS Y BOTANAS</h2>
+<ul>
+<li>ORDEN DE PAPAS A LA FRANCESA <span>$100</span>
+<button class="btn-pedir" onclick="pedir('PAPAS A LA FRANCESA',100)">Pedir</button>
+
+<li>ALITAS BBQ <span>$120</span>
+<button class="btn-pedir" onclick="pedir('ALITAS BBQ',120)">Pedir</button>
+
+<li>ALITAS MANGO HABANERO <span>$150</span>
+<button class="btn-pedir" onclick="pedir('ALITAS MANGO HABANERO',150)">Pedir</button>
+
+<li>ALITAS VALENTINA <span>$200</span>
+<button class="btn-pedir" onclick="pedir('ALITAS VALENTINA',200)">Pedir</button>
+</ul>
+</div>
+
+<!-- FUERTES -->
+<div class="seccion">
+<h2>PLATOS FUERTES</h2>
+<ul>
+<li>PARRILLADA CHICA <span>$200</span>
+<button class="btn-pedir" onclick="pedir('PARRILLADA CHICA',250)">Pedir</button>
+
+<li>PARRILLADA FAMILIAR <span>$250</span>
+<button class="btn-pedir" onclick="pedir('PARRILLADA FAMILIAR',250)">Pedir</button>
+
+<li>TACOS DE ENCHILADA <span>$250</span>
+<button class="btn-pedir" onclick="pedir('TACOS DE ENCHILADA',250)">Pedir</button>
+
+<li>TACOS DE CECINA <span>$250</span>
+<button class="btn-pedir" onclick="pedir('TACOS DE CECINA',250)">Pedir</button>
+
+<li>TACOS DE CHORIZO <span>$250</span>
+<button class="btn-pedir" onclick="pedir('TACOS DE CHORIZO',250)">Pedir</button>
+
+<li>HAMBURGUESA DOBLE <span>$250</span>
+<button class="btn-pedir" onclick="pedir('HAMBURGUESA DOBLE',250)">Pedir</button>
+
+<li>HAMBURGUESA HAWAIANA <span>$250</span>
+<button class="btn-pedir" onclick="pedir('HAMBURGUESA HAWAIANA',250)">Pedir</button>
+</ul>
+</div>
+
+<!-- BEBIDAS -->
+<div class="seccion">
+<h2>BEBIDAS</h2>
+<ul>
+<li>Refresco <span>$25</span>
+<button class="btn-pedir" onclick="pedir('Refresco',25)">Pedir</button>
+
+<li>Cerveza <span>$30</span>
+<button class="btn-pedir" onclick="pedir('Cerveza',30)">Pedir</button>
+
+<li>Michelada <span>$75</span>
+<button class="btn-pedir" onclick="pedir('Michelada',75)">Pedir</button>
+</ul>
+</div>
+
+<div class="center">
+<button class="btn-volver" onclick="volverMenu()">Volver</button>
+</div>
+
+</div>
+
+<!-- ===== TICKET COMPLETO ===== -->
+<div class="container" id="pantallaTicket" style="display:none;">
+
+<div class="ticket">
+
+<h2>EL AGAVE RESTAURANTE BAR</h2>
+
+<p>
+12 de diciembre esquina Aquiles Serdán No. 3<br>
+Villa Lázaro Cárdenas, Venustiano Carranza, Puebla 73049
+</p>
+
+<div class="row">
+<span id="ticketNum">Num. Ticket: 00001</span>
+<span id="ticketMesa">Mesa: 1</span>
+<span>Vendedor: 1</span>
+</div>
+
+<hr>
+
+<div id="productosTicket"></div>
+
+<hr>
+
+<p>Total: $<span id="ticketTotal">0</span></p>
+<p>Efectivo: $<span id="ticketEfectivo">0</span></p>
+<p>Cambio: $<span id="ticketCambio">0</span></p>
+
+<div id="ticketFecha"></div>
+
+<div class="center">
+<button class="btn-imprimir" onclick="window.print()">Imprimir ticket</button>
+<button class="btn-volver-ticket" onclick="volverDesdeTicket()">Volver</button>
+</div>
+
+</div>
+</div>
+
+<script>
+
+// CERRAR SESIÓN CORRECTO
+function cerrarSesion(){
+
+  localStorage.removeItem("sesion");
+
+  window.location.href = "index.html";
+}
+
+let mesaActual = 0;
+let pedidoActual = [];
+let pedidoGuardado = [];
+let estadoPedido = "Pendiente";
+
+/* NAV */
+function mostrarMesas(){ inicio.style.display="none"; mesas.style.display="flex"; }
+function volverInicio(){ mesas.style.display="none"; inicio.style.display="flex"; }
+function seleccionarMesa(num){
+ mesaActual=num;
+ mesas.style.display="none";
+ menu.style.display="block";
+ tituloMesa.innerText="MESA "+num;
+}
+function volverMenu(){
+ menu.style.display="none";
+ mesas.style.display="flex";
+ pedidoActual=[];
+ actualizar();
+}
+function volverDesdeTicket(){
+ pantallaTicket.style.display="none";
+ menu.style.display="block";
+}
+
+/* PEDIDO */
+function pedir(prod,precio){
+ pedidoActual.push({producto:prod,precio:precio});
+ actualizar();
+}
+function actualizar(){
+ let lista=document.getElementById("listaPedido");
+ let total=0;
+ lista.innerHTML="";
+
+ pedidoActual.forEach((p,index)=>{
+  total+=p.precio;
+
+  lista.innerHTML+=`
+  <li>
+    ${p.producto} - $${p.precio}
+    <button onclick="eliminar(${index})">X</button>
+  </li>`;
+ });
+
+ document.getElementById("total").innerText=total;
+}
+
+function eliminar(index){
+ pedidoActual.splice(index,1);
+ actualizar();
+}
+
+/* COCINA */
+function enviarCocina(){
+ if(pedidoActual.length==0){ 
+   alert("No hay pedido"); 
+   return; 
+ }
+
+ let tipo = document.getElementById("tipoPedido").value;
+
+ let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+
+ pedidos.push({
+   mesa: mesaActual,
+   productos: pedidoActual,
+   tipo: tipo,
+   estado: "En preparación"
+ });
+
+ localStorage.setItem("pedidos", JSON.stringify(pedidos));
+
+ document.getElementById("estado").innerText="Estado: En preparación";
+ document.getElementById("estadoDetalle").innerText="👨‍🍳 En cocina...";
+}
+
+/* PAGADO */
+function marcarPagado(){
+ pedidoGuardado=[...pedidoActual];
+ pedidoActual=[];
+ actualizar();
+ document.getElementById("estado").innerText="Estado: Pagado 💵";
+}
+
+/* TICKET */
+function generarTicket(){
+
+ let lista = pedidoGuardado.length>0 ? pedidoGuardado : pedidoActual;
+
+ if(lista.length==0){
+  alert("No hay pedido");
+  return;
+ }
+
+ let total=0;
+ lista.forEach(p=> total+=p.precio);
+
+ let efectivo=parseFloat(document.getElementById("inputEfectivo").value);
+
+ if(isNaN(efectivo) || efectivo < total){
+  alert("Efectivo inválido");
+  return;
+ }
+
+ menu.style.display="none";
+ pantallaTicket.style.display="flex";
+
+ let cont=document.getElementById("productosTicket");
+ cont.innerHTML="";
+
+ lista.forEach(p=>{
+  cont.innerHTML+=`<p>${p.producto} x1 - $${p.precio}</p>`;
+ });
+
+ ticketMesa.innerText="Mesa: "+mesaActual;
+ ticketTotal.innerText=total;
+ ticketEfectivo.innerText=efectivo;
+ ticketCambio.innerText=efectivo-total;
+
+ let hoy=new Date();
+ ticketFecha.innerText=hoy.toLocaleString();
+}
+
+/*ACTUALIZAR ESTADO DESDE COCINA */
+function actualizarEstadoDesdeCocina(){
+ let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+
+ let pedidoMesa = pedidos.find(p => p.mesa === mesaActual);
+
+ if(pedidoMesa){
+
+   if(pedidoMesa.estado === "Listo"){
+     document.getElementById("estado").innerText="Estado: Listo";
+     document.getElementById("estadoDetalle").innerText="✅ Listo";
+   }
+
+   else if(pedidoMesa.estado === "En preparación"){
+     document.getElementById("estado").innerText="Estado: En preparación";
+     document.getElementById("estadoDetalle").innerText="👨‍🍳 En cocina...";
+   }
+
+ }
+}
+
+/* ENTRE PESTAÑAS */
+window.addEventListener("storage", function(event){
+ if(event.key === "pedidos"){
+   actualizarEstadoDesdeCocina();
+ }
+});
+
+</script>
+
+</body>
+</html>
